@@ -1,2 +1,2 @@
-# fs-core-php
+# FstCore-PHP
 A backend core for PHP language
