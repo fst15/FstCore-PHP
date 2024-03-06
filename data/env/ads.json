@@ -1,0 +1,11 @@
+{
+    "adstera": {
+        "js": {
+            0: "<script></script>"
+        },
+        "ad_unit": {
+            "banner": "<div></div>",
+            "popunder": "<div></div>"
+        }
+    }
+}

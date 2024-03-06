@@ -1,0 +1,7 @@
+{
+    "domain" : "yourdomain.com",
+    "ssl" : true,
+    "force_ssl" : true,
+    "theme" : "theme1",
+    "support_email" : "admin@yourdomain.com"
+}
