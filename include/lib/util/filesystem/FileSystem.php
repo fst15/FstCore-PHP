@@ -1,5 +1,5 @@
 <?php
-require_once($basedir.'/include/lib/util/text/Text.php');
+require_once($basedir . '/include/lib/util/text/Text.php');
 
 class FileSystem
 {
@@ -19,9 +19,16 @@ class FileSystem
     {
         $data = null;
         $filepath = self::topath($folder . '/' . $file);
+        $size = filesize($filepath);
         $fopen = @fopen($filepath, 'r+');
-        $data = fread($fopen, filesize($filepath));
-        fclose($fopen);
+        if($fopen){
+            try{
+                $data = fread($fopen, $size);
+            }catch(Exception $e){
+            }
+            fclose($fopen);
+        }else{
+        }        
         return $data;
     }
 
@@ -73,15 +80,17 @@ class FileSystem
         }
     }
 
-    public function renamefolder($folder, $foldernew){
+    public function renamefolder($folder, $foldernew)
+    {
         $from = self::topath($folder);
         $new = self::topath($foldernew);
         @rename($from, $new);
     }
 
-    public function renamefile($folder, $file, $foldernew, $filenew){
-        $from = self::topath($folder. '/' . $file);
-        $new = self::topath($foldernew. '/' . $filenew);
+    public function renamefile($folder, $file, $foldernew, $filenew)
+    {
+        $from = self::topath($folder . '/' . $file);
+        $new = self::topath($foldernew . '/' . $filenew);
         @copy($from, $new);
     }
 
@@ -92,7 +101,7 @@ class FileSystem
         $handle = fopen($filepath, "rb");
         while (!feof($handle)) {
             $line = fread($handle, 8192);
-            if(($line == $r) == false){
+            if (($line == $r) == false) {
                 $data .= fread($handle, 8192);
             }
         }
@@ -107,9 +116,9 @@ class FileSystem
         $handle = fopen($filepath, "rb");
         while (!feof($handle)) {
             $line = fread($handle, 8192);
-            if(($line == $r)){
+            if (($line == $r)) {
                 $data .= $replacement;
-            }else{
+            } else {
                 $data .= $line;
             }
         }
@@ -124,7 +133,7 @@ class FileSystem
         $handle = fopen($filepath, "rb");
         while (!feof($handle)) {
             $line = fread($handle, 8192);
-            if(($line == $r)){
+            if (($line == $r)) {
                 $returned = true;
                 break;
             }
@@ -141,5 +150,4 @@ class FileSystem
         fclose($fopen);
         return $this->text->split($expl, $data);
     }
-
 }

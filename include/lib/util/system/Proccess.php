@@ -1,6 +1,6 @@
 <?php
 
-class Process{
+class Proccess{
 
     function execute($cmd) {
         if(function_exists('system')) { 		

@@ -27,7 +27,7 @@ class Database
   {
     $this->encoder = new Encoder();
     $this->fs = new FileSystem();
-    $this->db_json = $this->encoder->jsonn_decode($this->fs->readfile($GLOBALS['basedir'].'/data/env/', 'db.json'));
+    //$this->db_json = $this->encoder->jsonn_decode($this->fs->readfile($GLOBALS['basedir'].'/data/env/', 'db.json'));
   }
 
   public function connection()

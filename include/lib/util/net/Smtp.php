@@ -1,9 +1,9 @@
 <?php
 require_once($basedir.'/include/lib/util/3rdparty.php');
 require_once($basedir.'/include/lib/util/filesystem/FileSystem.php');
-require("phpmailer/PHPMailer.php");
-require("phpmailer/SMTP.php");
-require("phpmailer/Exception.php");
+//require("phpmailer/PHPMailer.php");
+//require("phpmailer/SMTP.php");
+//require("phpmailer/Exception.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -27,7 +27,7 @@ class Smtp{
     function __construct(){
         $this->encoder = new Encoder();
         $this->fs = new FileSystem();
-        $this->smtp_json = $this->encoder->json_decode($this->fs->readfile('data/env/', 'smtp.json'));
+        $this->smtp_json = $this->encoder->jsonn_decode($this->fs->readfile($GLOBALS['basedir'].'/data/env/', 'smtp.json'));
     }
 
     public function set_smtp($smtp){

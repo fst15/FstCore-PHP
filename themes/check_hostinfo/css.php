@@ -26,7 +26,13 @@ class css{
         <link href="../js/tinymce/skins/ui/tinymce-5/content.min.css" rel="stylesheet">
         <link href="../js/tinymce/skins/ui/tinymce-5/skin.min.css" rel="stylesheet">
         <link href="../js/tinymce/skins/ui/tinymce-5/skin.shadowdom.min.css" rel="stylesheet">
-        <link href="../css/main/stylesheet.css" rel="stylesheet">';
+        <link href="../css/main/stylesheet.css" rel="stylesheet">
+        
+        <!-- monetag -->
+        <script async="async" data-cfasync="false" src="//thubanoa.com/1?z=7180861"></script>
+        
+        <!-- mondiad -->
+        <script async src="https://ss.mndsrv.com/banner.js"></script>';
     }
 
     function __destruct(){

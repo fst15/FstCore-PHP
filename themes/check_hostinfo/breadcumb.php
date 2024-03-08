@@ -112,6 +112,7 @@ class breadcumb
 
     function __destruct()
     {
+      echo '<div data-mndbanid="a0fb54cf-96f0-4d2c-9247-deb8ad1a4b8c"></div>';
     }
     
 }

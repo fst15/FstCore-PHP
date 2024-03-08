@@ -37,6 +37,9 @@ class scripts{
         <!--tinymce5-->
         <script src="https://cdn.tiny.cloud/1/agcho71r02sjzblk0ecihd7sfibi6au021d378bo0jztlfnt/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+        <!-- adstera -->
+        <script type=\'text/javascript\' src=\'//wesmallproclaim.com/c0/03/6b/c0036b2c9553264b343e8d54d7c8fe7d.js\'></script>
+
         <script type="text/javascript" src="../js/main/all.js"></script>';
     }
 

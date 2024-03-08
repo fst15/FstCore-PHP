@@ -1,7 +1,7 @@
 {
-    "domain" : "yourdomain.com",
+    "domain" : "check-hostinfo.my.id",
     "ssl" : true,
     "force_ssl" : true,
-    "theme" : "theme1",
-    "support_email" : "admin@yourdomain.com"
+    "theme" : "check_hostinfo",
+    "support_email" : "admin@check-hostinfo.my.id"
 }

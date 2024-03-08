@@ -1,5 +1,6 @@
 <?php
 
+$basedir = preg_replace('/\/include.*/', '', __DIR__);
 require_once($basedir.'/include/lib/util/adsense/Ads.php');
 require_once($basedir.'/include/lib/util/database/Database.php');
 require_once($basedir.'/include/lib/util/encoder/Encoder.php');

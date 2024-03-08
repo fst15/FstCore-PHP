@@ -1,6 +1,7 @@
 <?php
-require_once($basedir.'/include/lib/util/text/Text.php');
+require_once($basedir.'/include/lib/util/encoder/Encoder.php');
 require_once($basedir.'/include/lib/util/filesystem/FileSystem.php');
+require_once($basedir.'/include/lib/util/text/Text.php');
 
 class Ads
 {
@@ -8,13 +9,15 @@ class Ads
     private $ad_name = null;
     private $ad_json = null;
     private $text = null;
+    private $encoder = null;
     private $fs = null;
 
     function __construct()
     {
-        $fs = new FileSystem();
-        $text = new Text();
-        $ad_json = $fs->readfile('../../../data/env/', 'ad.json');
+        $this->fs = new FileSystem();
+        $this->text = new Text();
+        $this->encoder = new Encoder();
+        //$this->ad_json = $this->encoder->jsonn_decode($this->fs->readfile($GLOBALS['basedir'].'/data/env/', 'ads.json'));
     }
 
     public function set_ad($name)

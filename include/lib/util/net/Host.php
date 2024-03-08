@@ -1,14 +1,16 @@
 <?php
-require_once($basedir.'/include/lib/util/3rdparty.php');
-require_once($basedir.'/include/lib/util/filesystem/FileSystem.php');
-require_once($basedir.'/include/lib/util/encoder/Encoder.php');
-require_once($basedir.'/include/lib/util/text/Text.php');
-require_once($basedir.'/include/lib/util/net/Parser.php');
-require_once($basedir.'/include/lib/util/database/Database.php');
+require_once($basedir . '/include/lib/util/3rdparty.php');
+require_once($basedir . '/include/lib/util/filesystem/FileSystem.php');
+require_once($basedir . '/include/lib/util/encoder/Encoder.php');
+require_once($basedir . '/include/lib/util/text/Text.php');
+require_once($basedir . '/include/lib/util/net/Parser.php');
+require_once($basedir . '/include/lib/util/database/Database.php');
+
 use Hostinger\DigClient;
 use JJG\Ping;
 
-class Host{
+class Host
+{
 
     private $fs = null;
     private $encoder = null;
@@ -17,13 +19,14 @@ class Host{
     private $database = null;
     private $data_port = null;
 
-    function __construct($val=null){
+    function __construct($val = null)
+    {
         $this->fs = new FileSystem();
         $this->encoder = new Encoder();
         $this->text = new Text();
         $this->parser = new Parser();
         $this->database = new Database();
-        $this->data_port = $this->encoder->jsonn_decode($this->fs->readfile($GLOBALS['basedir'].'/data/tool/', 'ports.json'));
+        $this->data_port = $this->encoder->jsonn_decode($this->fs->readfile($GLOBALS['basedir'] . '/data/tool/', 'ports.json'));
     }
 
     function escape($string)
@@ -53,7 +56,7 @@ class Host{
     {
         $connection = '';
         $request = '';
-        switch($type){
+        switch ($type) {
             case 'verisign':
                 $server = 'whois.verisign-grs.com';
                 $connection = fsockopen($server, 43, $errno, $errstr, 30);
@@ -268,6 +271,8 @@ class Host{
     public function check_whois($domain)
     {
         $data_array = array();
+        $arraykey_whois = array('NetRange', 'CIDR', 'NetName', 'NetHandle', 'Parent', 'NetType', 'OriginAS', 'Organization', 'RegDate Regristrant', 'Updated Regristrant', 'Ref', 'ResourceLink', 'ReferralServer', 'OrgAbuseRef', 'OrgTechRef', 'OrgName', 'OrgId', 'Address', 'City', 'StateProv', 'PostalCode', 'Country', 'OrgTechHandle', 'OrgTechName', 'OrgTechPhone', 'OrgTechMail', 'OrgAbuseHandle', 'OrgAbuseName', 'OrgAbusePhone', 'OrgAbuseEmail');
+        $arraykey_verisign = array('Domain Status', 'Name Server', 'Domain Name', 'Registry Domain ID', 'Registrar WHOIS Server', 'Registrar URL', 'Updated Date', 'Creation Date', 'Registry Expiry Date', 'Registrar', 'Registrar IANA ID', 'Registrar Abuse Contact Email', 'Registrar Abuse Contact Phone', 'DNSSEC');
         $data_array_whois = array();
         $data_array_verisign = array();
         $data_arin = self::whois('arin', $domain);
@@ -276,6 +281,7 @@ class Host{
         $data_array['arin_raw'] = trim($data_arin);
         $array_arin = explode("\n", trim($data_arin));
         $array_verisign = explode("\n", trim($data_verisign));
+
         foreach ($array_verisign as $d) {
             if (strpos($d, ': ')) {
                 $array_explode = explode(': ', preg_replace('/^\s+/i', '', $d));
@@ -365,16 +371,12 @@ class Host{
                         $data_array_whois['Organization'] = $array_explode[1];
                         break;
                     case "RegDate":
-                        if (isset($data_array_whois['RegDate Host']) == false) {
-                            $data_array_whois['RegDate Host'] = $array_explode[1];
-                        } else if (isset($data_array_whois['RegDate Regristrant']) == false) {
+                        if (isset($data_array_whois['RegDate Regristrant']) == false) {
                             $data_array_whois['RegDate Regristrant'] = $array_explode[1];
                         }
                         break;
                     case "Updated":
-                        if (isset($data_array_whois['Updated Host']) == false) {
-                            $data_array_whois['Updated Host'] = $array_explode[1];
-                        } else if (isset($data_array_whois['Updated Regristrant']) == false) {
+                        if (isset($data_array_whois['Updated Regristrant']) == false) {
                             $data_array_whois['Updated Regristrant'] = $array_explode[1];
                         }
                         break;
@@ -418,7 +420,9 @@ class Host{
                         $data_array_whois['City'] = $array_explode[1];
                         break;
                     case "StateProv":
-                        $data_array_whois['StateProv'] = $array_explode[1];
+                        if ($this->text->regex_match('/^(\s+?|\t+)$/', $array_explode[1]) == false) {
+                            $data_array_whois['StateProv'] = $array_explode[1];
+                        }
                         break;
                     case "PostalCode":
                         $data_array_whois['PostalCode'] = $array_explode[1];
@@ -455,15 +459,32 @@ class Host{
                 }
             }
         }
+
+        foreach ($arraykey_whois as $key_whois) {
+            if ($this->text->is_existkeyonarray($key_whois, $data_array_whois) == false) {
+                $data_array_whois[$key_whois] = '-';
+            }
+        }
+
+        foreach ($arraykey_verisign as $key_verisign) {
+            if ($this->text->is_existkeyonarray($key_verisign, $data_array_verisign) == false) {
+                $data_array_verisign[$key_verisign] = '-';
+            }
+        }
         $data_array['whois'] = $data_array_whois;
         $data_array['verisign'] = $data_array_verisign;
         return $data_array;
     }
 
+    public function ping($host)
+    {
+        return '';
+    }
+
     /**
      * SESSION
      */
-    public function check_session()
+    /*public function check_session()
     {
         $checksession = new ConfigCheckSession1996();
         $session = $checksession->check_session();
@@ -500,7 +521,7 @@ class Host{
         $changepassword = new ConfigChangePassword1996();
         $return = $changepassword->changepassword($currentpassword, $newpassword1, $newpassword2, $token);
         return $return;
-    }
+    }*/
 
     /**
      * DASHBOARD

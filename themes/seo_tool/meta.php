@@ -18,15 +18,15 @@ class meta{
        * <meta name="twitter:description" property="og:description" itemprop="description" content="" />
        */
       echo '<meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
-        <meta property="og:type" content= "website" />
-        <meta property="og:url" content="https://www.check-hostinfo.my.id/"/>
-        <meta property="og:site_name" content="Check HostInfo" />
-        <meta property="og:image" itemprop="image primaryImageOfPage" content="https://www.check-hostinfo.my.id/images/check-hostinfo.png" />
-        <link rel="icon" href="https://www.check-hostinfo.my.id/icons/favicon.ico">
-        <link rel="image_src" href="https://www.check-hostinfo.my.id/images/check-hostinfo.png"> 
-        <link rel="apple-touch-icon" href="https://www.check-hostinfo.my.id/images/check-hostinfo.png">
-        <link rel="shortcut icon" href="https://www.check-hostinfo.my.id/icons/favicon.ico">';
+          <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+          <meta property="og:type" content= "website" />
+          <meta property="og:url" content="https://www.check-hostinfo.my.id/"/>
+          <meta property="og:site_name" content="Check HostInfo" />
+          <meta property="og:image" itemprop="image primaryImageOfPage" content="https://www.check-hostinfo.my.id/images/check-hostinfo.png" />
+          <link rel="icon" href="https://www.check-hostinfo.my.id/icons/favicon.ico">
+          <link rel="image_src" href="https://www.check-hostinfo.my.id/images/check-hostinfo.png"> 
+          <link rel="apple-touch-icon" href="https://www.check-hostinfo.my.id/images/check-hostinfo.png">
+          <link rel="shortcut icon" href="https://www.check-hostinfo.my.id/icons/favicon.ico">';
     }
 
     function __destruct(){

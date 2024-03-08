@@ -62,7 +62,7 @@ class SyncronTask
     }
 }
 
-class StartThread extends Thread
+class StartThread /*extends Thread*/
 {
 
     private $syncrontask;

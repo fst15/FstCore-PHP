@@ -1,5 +1,7 @@
 <?php
 
+use function Symfony\Component\String\b;
+
 class error
 {
 

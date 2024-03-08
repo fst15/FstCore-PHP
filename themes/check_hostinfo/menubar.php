@@ -1,14 +1,25 @@
 <?php
 
-class menubar{
+class menubar
+{
 
-    function __function(){
-
+    function __function()
+    {
     }
 
-    public function init(){
-        echo '
-<div class="container data-content" style="padding: 0px !important;">
+    public function init()
+    {
+        echo '<script type="text/javascript">
+        atOptions = {
+            \'key\' : \'9b197b9bde99c124b2aefd781b3a73e3\',
+            \'format\' : \'iframe\',
+            \'height\' : 250,
+            \'width\' : 300,
+            \'params\' : {}
+        };
+        document.write(\'<scr\' + \'ipt type="text/javascript" src="//wesmallproclaim.com/9b197b9bde99c124b2aefd781b3a73e3/invoke.js"></scr\' + \'ipt>\');
+    </script>';
+        echo '<div class="container data-content" style="padding: 0px !important;">
         <div class="row label-bar">
         <div class="col">
         <div class="card label-bar-card">
@@ -93,9 +104,5 @@ class menubar{
 
     function __destruct()
     {
-        
     }
-
 }
-
-?>

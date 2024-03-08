@@ -8,7 +8,7 @@ class Theme{
     }
 
     public function set($theme_name){
-        require_once $GLOBALS['basedir'].'/themes/'.$theme_name.'/init.php';
+        include $GLOBALS['basedir'].'/themes/'.$theme_name.'/init.php';
     }
 
     public function base_color($color){
